@@ -1,0 +1,42 @@
+/*
+ * 
+ * 
+ */
+
+body {
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    background: #345;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    margin: 0.5em;
+}
+
+#input-field {
+    background: #fff;
+}
+
+#results {
+    padding: 0;
+}
+
+.card {
+    display: block;
+    padding: 1em;
+    background: #fff;
+    border-top: 7px solid #4af;
+
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+@media (min-width: 768px) {
+    body {
+        display: grid;
+
+    }
+}
