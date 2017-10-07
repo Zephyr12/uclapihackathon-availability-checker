@@ -1,20 +1,18 @@
-$(function() {
-    $("inputfield").append('<button>Jack</button><button>Frost</button>');
-});
 
-$(".button").on("click", function() {
-    var $button = $(this);
-    var oldValue = $button.parent().find("input").val();
-    if ($button.text() == "+") {
-        var newVal = parseFloat(oldValue) + 1;
-    } else {
-        // Don't allow decrementing below zero
-        if (oldValue > 0) {
-            var newVal = parseFloat(oldValue) - 1;
-        } else {
-            newVal = 0;
-        }
+function spitOutTheBone(resps){
+    console.log(resps[0]);
+    for (i = 0;i<3;i++){
+        $('#results').append(
+            $('<li>').append(
+                $('<a>').attr('href', '/user/messages').append(
+                    $('<span>').attr('class', 'tab').append(resps[i].startime.toDateString())
+                )));
     }
-    $button.parent().find("input").val(newVal);
+}
 
-});
+
+function test(){
+
+    spitOutTheBone(getTimeTable());
+    return false;
+}

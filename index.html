@@ -1,6 +1,6 @@
 <html lang="EN">
-  <head>
-    <meta charset="UTF-8">
+    <head>
+        <meta charset="UTF-8">
 
     <title>UCL-Availability-Checker</title>
     <meta name="description" content="UCLAPI Hackathon Project">
@@ -14,20 +14,20 @@
 
   </head>
 
-  <body>
 
-      <form onsubmit="" id="inputfield">
-        <input type="text" name="from" placeholder="from..">
-        <input type="text" name="to" placeholder="to..">
-        <input type="text" name="search" placeholder="Search..">
+    <body>
+        <form id="input-field" method="get" onsubmit="return test()">
+            <h1> I would like to meet </h1>
+            <input type="text" name="search" placeholder="Search..">
+            <h1> In the next </h1>
+            <span> <input type="number" name="from" placeholder="from.."> days </span>
+          <button type="submit">SEARCH</button>
+        </form>
 
-      </form>
-
-        <ul>
-            <li>
-              <p>Test</p>
+        <ul id="results">
+            <li class="card">
+            Test
             </li>
-
         </ul>
-  </body>
+    </body>
 </html>
