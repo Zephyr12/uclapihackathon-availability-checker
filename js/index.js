@@ -1,13 +1,37 @@
-var etable = []
-var ttable = []
+
+function pad2(s) {return ("00" + s).slice(-2);}
+
 function spitOutTheBone(resps){
     console.log(resps);
-    for (i = 0;i<resps.length;i++){
+    for (var i = 0; i<resps.length; i++){
+        var date = new Date(resps[i].start_time);
+        var start_time = date;
+        var end_time = new Date(resps[i].end_time);
         $('#results').append(
             $('<li>').attr('class','card').append(
-                $('<a>').attr('href', '/user/messages').append(
-                    $('<span>').attr('class', 'tab').append(resps[i].endtime.toString())
-                )));
+                $('<h2>').text(resps[i].description),
+                $('<p>').text(
+                    "Date: "
+                    + pad2(date.getFullYear().toString())
+                    + "-"
+                    + pad2((date.getMonth() + 1).toString())
+                    + "-"
+                    + pad2(date.getDay().toString())),
+                $('<p>').text(
+                    "Duration: "
+                    + pad2(start_time.getHours()) + ":" + pad2(start_time.getMinutes())
+                    + " \u2013 "
+                    + pad2(end_time.getHours()) + ":" + pad2(end_time.getMinutes())
+                ),
+                $('<p>').text(
+                    "Location: "
+                    + resps[i].roomname
+                ),
+                $('<p>').text(
+                    "Name: "
+                    + resps[i].contact
+                )
+                ));
     }
 }
 
@@ -22,46 +46,31 @@ function test(entity,days){
 
     $("#results").empty();
 
-    frees = []
+    var frees = []
     var eventi = getEventsI( entity ,new Date(Date.now()).toISOstring, new Date(Date.now()+(days*24*60*60*1000)).toISOstring)
-       eventi.done(function(result){
-        len = result.bookings.length ;
+
+    //Callback
+    eventi.done(function(result){
+        console.log(result);
         result.bookings.sort ( compare_dates ) ;
-        for ( var i = 0 ; i < len ; i ++ )
-        {
-            etable.push({
-                contact:result.bookings [ i ] . contact,
-                startime:new Date(result.bookings [ i ] . start_time),
-                endtime: new Date(result.bookings [ i ] . end_time)
-            })
-            console.log( result.bookings [ i ] . contact + " " + result.bookings [ i ] . start_time + " " + result.bookings [ i ] . end_time ) ;
+
+        var arr = [];
+        var gapsTimeTable = convertToGap(arr,days);
+        console.log(gapsTimeTable.length)
+        for(var i = 0;i<result.bookings.length;i++){
+            for(var j = 0;j<gapsTimeTable.length;j++){
+                if(dateCheck(gapsTimeTable[j].startime,gapsTimeTable[j].endtime,result.bookings[i].end_time)){
+                    frees.push(result.bookings[i]);
+                }
+            }
         }
-           arr = [];
-           gapsTimeTable = convertToGap(arr,days);
-           console.log(gapsTimeTable.length)
-           for(i = 0;i<etable.length;i++){
-               for(j = 0;j<gapsTimeTable.length;j++){
-
-                   if(dateCheck(gapsTimeTable[j].startime,gapsTimeTable[j].endtime,etable[i].endtime)){
-                       frees.push(etable[i]);
-                   }else{
-                       
-                   }
-               }
-           }
-           spitOutTheBone(frees);
+        spitOutTheBone(frees);
     });
-
-
-
-
-
-
     return false;
 }
 
 function convertToGap(arr,days) {
-    gaps = [];
+    var gaps = [];
 
     if (arr.length === 0) {
         gaps.push({
@@ -75,7 +84,7 @@ function convertToGap(arr,days) {
             endtime: arr[0].endtime
         })
 
-        for (i = 0; i < arr.length - 1; i++) {
+        for (var i = 0; i < arr.length - 1; i++) {
             gaps.push({
                 startime: arr[i].endtime,
                 endtime: arr[i + 1].startime

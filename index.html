@@ -17,16 +17,13 @@
 
     <body>
 
-        <a href="https://uclapi.com/oauth/authorise?client_id=0477880789798665.1917652740026986&state=99woehfe0rwhpf">
-            <img src="https://s3.eu-west-2.amazonaws.com/uclapi-static/SignInWithUCLSmall.png">
-        </a>
 
-        <form id="input-field" class="card" method="get" onsubmit="return test(document.getElementById('name').value,5)">
+        <form id="input-field" class="card" method="get" onsubmit="return test(document.getElementById('name').value,document.getElementById('days').value)">
             <h1> I would like to meet </h1>
             <input type="text" name="search" id = "name"placeholder="Joe Smith">
             <h1> In the next </h1>
 
-            <span> <input type="number" name="from" placeholder="5"> days </span>
+            <span> <input type="number" id = "days"name="from" placeholder="5"> days </span>
           <button type="submit">SEARCH</button>
 
         </form>
