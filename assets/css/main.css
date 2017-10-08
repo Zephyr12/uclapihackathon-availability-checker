@@ -1,0 +1,71 @@
+/*
+ *
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding 0;
+}
+
+ *
+ */
+body {
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    background: #345;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    margin: 0.5em;
+}
+
+#input-field {
+    background: #fff;
+}
+
+#results {
+    padding: 0;
+    margin: 0;
+}
+
+#results > li {
+    margin-bottom: 1em;
+}
+
+input[type="number"]{
+    width: 5em;
+}
+
+.card {
+    display: block;
+    padding: 1em;
+    background: #fff;
+    border-top: 7px solid #4af;
+
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+@media (min-width: 768px) {
+    body {
+        display: grid;
+        grid-template-columns: 2fr 5fr;
+        grid-template-rows: 20em 30fr;
+        grid-template-areas: "form content"
+                             "blank content";
+        grid-gap: 2em;
+    }
+
+
+    #input-field {
+        grid-area: "form";
+
+    }
+
+    #results {
+        grid-area: "content";
+    }
+}

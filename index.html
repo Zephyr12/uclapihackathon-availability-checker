@@ -1,21 +1,30 @@
 <!DOCTYPE HTML>
 
 <html lang="EN">
-  <head>
-    <meta charset="UTF-8">
+    <head>
+        <meta charset="UTF-8">
+        <title>UCL-Availability-Checker</title>
+        <meta name="description" content="UCLAPI Hackathon Project">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link type="text/css" href="assets/css/main.css" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script src="assets/js/oauth.js"></script>
+        <script src="assets/js/lib.js"></script>
+        <script src="assets/js/index.js"></script>
+    </head>
 
-    <title>UCL-Availability-Checker</title>
-    <meta name="description" content="UCLAPI Hackathon Project">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="#">
+    <body>
+        <form id="input-field" class="card" method="get" onsubmit="test(document.getElementById('name').value,document.getElementById('days').value); return false;">
+            <h1> I would like to meet </h1>
+            <input type="text" name="search" id = "name"placeholder="Joe Smith">
+            <h1> In the next </h1>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="js/oauth.js"></script>
-    <script src="js/lib.js"></script>
-    <script src="js/index.js"></script>
-  </head>
+            <span> <input type="number" id = "days"name="from" placeholder="5"> days </span>
+          <button type="submit">SEARCH</button>
+        </form>
 
-  <body>
+        <ul id="results">
 
-  </body>
+        </ul>
+    </body>
 </html>

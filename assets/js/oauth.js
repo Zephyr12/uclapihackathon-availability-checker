@@ -1,3 +1,5 @@
+/* DO NOT USE IN ACTUAL PRODUCTION, LOAD FROM BACKEND */
+var UCL_API_TOKEN = "uclapi-b21fe5840ea6a7-8598a543d5615f-a3c2fd15f2edc0-e81f950683d515";
 var CLIENT_ID = "4218681856646897.8917625845387480";
 var UCLIF_ENDPOINT = "https://uclapi.com/oauth/";
 /* COOKIES */
@@ -52,9 +54,9 @@ function randomString(length) {
 
 
 function parameterize(data){
-  return Object.keys(data).map(function(k){
-    return encodeURIComponent(k) + '=' + encodeURIComponent(data[k])
-  }).join('&');
+    return Object.keys(data).map(function(k){
+      return encodeURIComponent(k) + '=' + encodeURIComponent(data[k])
+    }).join('&');
 }
 
 
@@ -74,7 +76,6 @@ function parseQuery(qstr) {
 }
 
 function authenticate(){
-    document.write(readCookie('oauth_token'));
     if (readCookie('oauth_token') === null){
         var parsed = parseQuery(window.location.search);
         if ("token" in parsed){
